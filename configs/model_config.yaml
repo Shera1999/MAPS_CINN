@@ -1,0 +1,56 @@
+model:
+  selected_model: "simclr"  # options: simclr, nnclr, dino
+  
+  cinn:
+    learning_rate: 2e-5
+    hidden_dim:     128
+    n_blocks:       12
+    clamp:          2.0
+  
+  simclr:
+    backbone: "resnet18"  # Options: resnet18, resnet34, resnet50
+    projection_dim: 128
+    hidden_dim: 512
+  nnclr:
+    backbone: "resnet18"
+    queue_size: 4096
+    projection_dim: 128
+    hidden_dim: 512
+
+  dino:
+    backbone: "resnet18"  # Options: resnet18, resnet34, resnet50, dino_vits16
+    input_dim: 512
+    hidden_dim: 512
+    output_dim: 2048
+    freeze_last_layer: 1
+    warmup_teacher_temp_epochs: 5
+    learning_rate: 0.001
+
+  simsiam:
+    backbone: "resnet18"
+    input_dim: 512
+    proj_hidden_dim: 512
+    pred_hidden_dim: 128
+    out_dim: 128
+    learning_rate: 0.05
+
+
+  moco:
+    backbone: resnet18
+    input_dim: 512
+    proj_hidden_dim: 512
+    out_dim: 128
+    learning_rate: 0.06
+    momentum: 0.99
+    temperature: 0.1
+    memory_bank_size: 4096
+
+
+  byol:
+    backbone: resnet18
+    input_dim: 512
+    proj_hidden_dim: 1024
+    pred_hidden_dim: 1024
+    out_dim: 256
+    learning_rate: 0.05
+    momentum: 0.996
